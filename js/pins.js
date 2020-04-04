@@ -2,7 +2,7 @@
 
 (function () {
   var map = document.querySelector('.map');
-  var listPins = map.querySelector('.map__pins');
+  var mapPins = map.querySelector('.map__pins');
 
   var generatePin = function (pin) {
     var pinTemplate = document.querySelector('#pin').content;
@@ -26,7 +26,7 @@
       for (var i = 0; i < array.length; i++) {
         fragment.appendChild(generatePin(array[i]));
       }
-      listPins.appendChild(fragment);
+      mapPins.appendChild(fragment);
     }
   };
 })();
