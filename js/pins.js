@@ -4,7 +4,7 @@
   var map = document.querySelector('.map');
   var listPins = map.querySelector('.map__pins');
 
-  var generatePin = function(pin) {
+  var generatePin = function (pin) {
     var pinTemplate = document.querySelector('#pin').content;
     var pinElement = pinTemplate.querySelector('.map__pin').cloneNode(true);
     var pinUserAvatar = pinElement.querySelector('img');
@@ -14,10 +14,10 @@
 
     pinUserAvatar.src = pin.author.avatar;
     pinElement.style.left = pinLocationX;
-    pinElement.style.top = pinLocationY ;
+    pinElement.style.top = pinLocationY;
 
     return pinElement;
-  }
+  };
 
   window.mapMarks = {
     generatePins: function (array) {
@@ -28,5 +28,5 @@
       }
       listPins.appendChild(fragment);
     }
-  }
+  };
 })();

@@ -27,26 +27,26 @@
     MAX_COORDS_X: document.querySelector('.map').offsetWidth
   };
 
-// Функция, возвращающая случайное число в диапазоне
+  // Функция, возвращающая случайное число в диапазоне
   var getRandomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-// Функция, возвращающая случайный элемемент массива
+  // Функция, возвращающая случайный элемемент массива
   var getRandomElement = function (array) {
     var randomIndex = getRandomNumber(1, array.length - 1);
     var randomElement = array[randomIndex];
     return randomElement;
   };
 
-// Функция, создающая массив произвольной длины
+  // Функция, создающая массив произвольной длины
   var getArrayRandomLength = function (array) {
     var clone = array.slice();
     clone.length = getRandomNumber(1, array.length - 1);
     return clone;
   };
 
-// Функция, возвращающая массив фотографий к объявлению
+  // Функция, возвращающая массив фотографий к объявлению
   var generatePhotos = function () {
     var photos = [];
     for (var i = 1; i < getRandomNumber(DataMocks.MIN_PHOTOS, DataMocks.MAX_PHOTOS) + 1; i++) {
@@ -88,5 +88,5 @@
       }
       return mocks;
     }
-  }
+  };
 })();
