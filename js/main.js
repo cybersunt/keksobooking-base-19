@@ -4,5 +4,6 @@
   var map = document.querySelector('.map');
   map.classList.remove('map--faded');
 
-  var adds = window.data.generateMocks();
+  var currentData = window.data.generateMocks();
+  window.mapMarks.generatePins(currentData);
 })();

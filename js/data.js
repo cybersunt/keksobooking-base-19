@@ -56,15 +56,13 @@
     return photos;
   };
 
-  var locationX = getRandomNumber(DataMocks.MIN_COORDS_X, DataMocks.MAX_COORDS_X);
-  var locationY = getRandomNumber(DataMocks.MIN_COORDS_Y, DataMocks.MAX_COORDS_Y);
-
-
-
   window.data = {
     generateMocks: function () {
       var mocks = [];
       for (var i = 1; i < DataMocks.COUNT_USERS + 1; i++) {
+        var locationX = getRandomNumber(DataMocks.MIN_COORDS_X, DataMocks.MAX_COORDS_X);
+        var locationY = getRandomNumber(DataMocks.MIN_COORDS_Y, DataMocks.MAX_COORDS_Y);
+
         mocks.push({
           author: {
             avatar: 'img/avatars/user0' + i + '.png',
