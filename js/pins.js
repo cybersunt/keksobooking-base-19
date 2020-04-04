@@ -5,25 +5,28 @@
   var listPins = map.querySelector('.map__pins');
 
   var generatePin = function(pin) {
-    var PIN_WIDTH = 50;
-    var PIN_HEIGHT = 70;
     var pinTemplate = document.querySelector('#pin').content;
     var pinElement = pinTemplate.querySelector('.map__pin').cloneNode(true);
     var pinUserAvatar = pinElement.querySelector('img');
 
+    var pinLocationX = (pin.location.x - window.constants.PIN_WIDTH) + 'px';
+    var pinLocationY = pin.location.y - (window.constants.PIN_HEIGHT / 2) + 'px';
+
     pinUserAvatar.src = pin.author.avatar;
-    pinElement.style.left = (pin.location.x - PIN_HEIGHT) + 'px';
-    pinElement.style.top = pin.location.y -(PIN_WIDTH / 2) + 'px';
+    pinElement.style.left = pinLocationX;
+    pinElement.style.top = pinLocationY ;
 
     return pinElement;
   }
 
   window.mapMarks = {
     generatePins: function (array) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < array.length; i++) {
-      fragment.appendChild(generatePin(array[i]));
+      var fragment = document.createDocumentFragment();
+
+      for (var i = 0; i < array.length; i++) {
+        fragment.appendChild(generatePin(array[i]));
+      }
+      listPins.appendChild(fragment);
     }
-    listPins.appendChild(fragment);
-  };
+  }
 })();
