@@ -19,7 +19,7 @@
     return pinElement;
   };
 
-  window.mapMarks = {
+  window.map = {
     generatePins: function (array) {
       var fragment = document.createDocumentFragment();
 
