@@ -8,17 +8,17 @@
     'bungalo': 'Бунгало'
   };
 
-  var getRoomsAndGuests = function(rooms, guests) {
+  var getRoomsAndGuests = function (rooms, guests) {
     return rooms + ' комнаты для ' + guests + ' гостей';
   };
 
   var getTime = function (checkin, checkout) {
     return 'Заезд после ' + checkin + ', выезд до' + checkout;
-  }
+  };
 
   var getPrice = function (price) {
     return price + ' ₽/ночь';
-  }
+  };
 
   var generateIconFeature = function (feature) {
     var icon = window.utils.createDOMElement('li', 'popup__feature');
@@ -61,7 +61,7 @@
     cardOffer.querySelector('.popup__text--address').textContent = offer.address;
     cardOffer.querySelector('.popup__description').textContent = offer.description;
     cardOffer.querySelector('.popup__type').textContent = typeOfRooms[offer.type];
-    cardOffer.querySelector('.popup__text--price').textContent =  getPrice(offer.price);
+    cardOffer.querySelector('.popup__text--price').textContent = getPrice(offer.price);
     cardOffer.querySelector('.popup__text--capacity').textContent = getRoomsAndGuests(offer.rooms, offer.guests);
     cardOffer.querySelector('.popup__text--time').textContent = getTime(offer.checkin, offer.checkout);
   };
@@ -73,16 +73,16 @@
     cardOffer.querySelector('.popup__avatar').src = author.avatar;
 
     var cardOfferFeatures = cardOffer.querySelector('.popup__features');
-    var cardOfferPhotos  = cardOffer.querySelector('.popup__photos');
+    var cardOfferPhotos = cardOffer.querySelector('.popup__photos');
     var cardOfferListFeatures = generateIconsFeatures(offer.features);
-    var cardOfferListPhotos  = generatePhotos(offer.photos);
+    var cardOfferListPhotos = generatePhotos(offer.photos);
 
     window.utils.removeChilds(cardOfferFeatures);
     window.utils.removeChilds(cardOfferPhotos);
 
     cardOfferFeatures.appendChild(cardOfferListFeatures);
     cardOfferPhotos.appendChild(cardOfferListPhotos);
-  }
+  };
 
   var generateCardOffer = function (array) {
     var cardOfferTemplate = document.querySelector('#card').content;
@@ -96,10 +96,10 @@
     return cardOffer;
   };
 
-  var openCardOffer = function(array) {
+  var openCardOffer = function (array) {
     var map = document.querySelector('.map');
     var adFiltering = map.querySelector('.map__filters-container');
-    var cardOffer =  generateCardOffer(array[0]);
+    var cardOffer = generateCardOffer(array[0]);
 
     adFiltering.insertAdjacentElement('beforeBegin', cardOffer);
   };

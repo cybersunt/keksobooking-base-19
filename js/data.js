@@ -49,9 +49,9 @@
   // Функция, возвращающая массив фотографий к объявлению
   var generatePhotos = function () {
     var photos = [];
-    array.length = getRandomNumber(DataMocks.MIN_PHOTOS, DataMocks.MAX_PHOTOS);
+    photos.length = getRandomNumber(DataMocks.MIN_PHOTOS, DataMocks.MAX_PHOTOS);
 
-    for (var i = 1; i < array.length + 1; i++) {
+    for (var i = 1; i < photos.length + 1; i++) {
       var photo = 'http://o0.github.io/assets/images/tokyo/hotel' + i + '.jpg';
       photos.push(photo);
     }
