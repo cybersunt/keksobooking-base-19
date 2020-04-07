@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var currentData = window.data.generateMocks();
-
   var typeOfRooms = {
     'palace': 'Дворец',
     'flat': 'Квартира',
@@ -30,10 +28,10 @@
 
   var generateIconsFeatures = function (arrayFeatures) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < arrayFeatures.length; i++) {
-      var feature = generateIconFeature(arrayFeatures[i]);
-      fragment.appendChild(feature);
-    }
+    arrayFeatures.forEach(function (el) {
+      fragment.appendChild(generateIconFeature(el));
+    });
+
     return fragment;
   };
 
@@ -49,10 +47,10 @@
 
   var generatePhotos = function (arrayPhotos) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < arrayPhotos.length; i++) {
-      var image = generatePhoto(arrayPhotos[i]);
-      fragment.appendChild(image);
-    }
+    arrayPhotos.forEach(function (el) {
+      fragment.appendChild(generatePhoto(el));
+    });
+
     return fragment;
   };
 
@@ -101,8 +99,13 @@
   var openCardOffer = function(array) {
     var map = document.querySelector('.map');
     var adFiltering = map.querySelector('.map__filters-container');
+    var cardOffer =  generateCardOffer(array[0]);
 
-    adFiltering.insertAdjacentElement('beforeBegin', generateCardOffer(array[0]));
+    adFiltering.insertAdjacentElement('beforeBegin', cardOffer);
   };
-  openCardOffer(currentData);
+
+  window.card = {
+    openCardOffer: openCardOffer
+  };
+
 })();

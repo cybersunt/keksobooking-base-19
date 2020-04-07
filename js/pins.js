@@ -19,14 +19,16 @@
     return pinElement;
   };
 
-  window.map = {
-    generatePins: function (array) {
-      var fragment = document.createDocumentFragment();
 
-      for (var i = 0; i < array.length; i++) {
-        fragment.appendChild(generatePin(array[i]));
-      }
+   var generatePins = function (array) {
+     var fragment = document.createDocumentFragment();
+     array.forEach(function (el) {
+       fragment.appendChild(generatePin(el));
+     });
       mapPins.appendChild(fragment);
-    }
-  };
+    };
+
+  window.mapMarks = {
+    generatePins: generatePins
+  }
 })();

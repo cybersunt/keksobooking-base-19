@@ -5,5 +5,6 @@
   map.classList.remove('map--faded');
 
   var currentData = window.data.generateMocks();
-  window.map.generatePins(currentData);
+  window.mapMarks.generatePins(currentData);
+  window.card.openCardOffer(currentData);
 })();
