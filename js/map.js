@@ -4,35 +4,41 @@
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
   var filtersAds = map.querySelector('.map__filters-container');
+  var filtersAdsCollection = map.querySelectorAll('.map__filter');
 
-  var form = document.querySelector('.ad-form');
-  var fieldsForm = form.querySelectorAll('fieldset');
+  var formAd = document.querySelector('.ad-form');
+  var fieldsFormAdCollection = formAd.querySelectorAll('fieldset');
+
+  var setAttributeCollection = function (collection, state) {
+    collection.forEach(function (el) {
+      el.disabled = state;
+    });
+  };
 
   var deactivateMap = function () {
-    fieldsForm.forEach(function (el) {
-      el.disabled = true;
-    });
+    setAttributeCollection(fieldsFormAdCollection, true);
+    setAttributeCollection(filtersAdsCollection, true);
+
     window.utils.addClassName(filtersAds, 'hidden');
 
     if (map.classList.contains('map--faded')) {
       window.utils.removeClassName(map, 'map--faded');
     }
-    if (form.classList.contains('map--faded')) {
-      window.utils.removeClassName(form, 'ad-form--disabled');
+    if (formAd.classList.contains('map--faded')) {
+      window.utils.removeClassName(formAd, 'ad-form--disabled');
     }
 
-    mainPin.addEventListener('mousedown', onMainPinActivateMapClick);
-    mainPin.addEventListener('keydown', onMainPinActivateMapKeyDown);
+    mainPin.addEventListener('mousedown', onMainPinMousedown);
+    mainPin.addEventListener('keydown', onMainPinKeydown);
   };
 
-  var activateMap = function (evt) {
-    fieldsForm.forEach(function (el) {
-      el.disabled = false;
-    });
+  var activateMap = function () {
+    setAttributeCollection(fieldsFormAdCollection, false);
+    setAttributeCollection(fieldsFormAdCollection, false);
 
     window.utils.removeClassName(filtersAds, 'hidden');
     window.utils.removeClassName(map, 'map--faded');
-    window.utils.removeClassName(form, 'ad-form--disabled');
+    window.utils.removeClassName(formAd, 'ad-form--disabled');
 
     var currentData = window.data.generateMocks();
     window.mapMarks.generatePins(currentData);
@@ -40,22 +46,18 @@
     document.removeEventListener('DOMContentLoaded', deactivateMap)
   };
 
-  var onMainPinActivateMapClick = function (evt) {
+  var onMainPinMousedown = function (evt) {
     if (typeof evt === 'object' && evt.button === window.constants.MOUSE_LEFT_BUTTON) {
       activateMap();
     }
   };
 
-  var onMainPinActivateMapKeyDown = function (evt) {
+  var onMainPinKeydown = function (evt) {
     window.utils.isEnterEvent(evt, activateMap)
   };
 
-  var onDOMContentLoaded = function () {
-    deactivateMap();
-  };
-
   var init = function() {
-    document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+    deactivateMap();
   };
 
   window.map = {
