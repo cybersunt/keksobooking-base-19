@@ -20,12 +20,12 @@
 
   var getPinMainCoordinates = function (state) {
     if (state) {
-      var startCoordsMainPin = {
+      startCoordsMainPin = {
         x: Math.floor(parseInt(mainPin.style.left) + window.constants.MAIN_PIN_SIZE / 2),
         y: Math.floor(parseInt(mainPin.style.top) - (window.constants.MAIN_PIN_SIZE + window.constants.MAIN_PIN_SIZE_TAIL))
       };
     } else {
-      var startCoordsMainPin = {
+      startCoordsMainPin = {
         x: Math.floor(parseInt(mainPin.style.left) + window.constants.MAIN_PIN_SIZE / 2),
         y: Math.floor(parseInt(mainPin.style.top) - window.constants.MAIN_PIN_SIZE)
       };
@@ -39,9 +39,11 @@
   };
 
   var deactivateMap = function () {
+    // module form start
     setInputAddress(getPinMainCoordinates(false));
     setAttributeCollection(fieldsFormAdCollection, true);
     setAttributeCollection(filtersAdsCollection, true);
+    // module form end
 
     window.utils.addClassName(filtersAds, 'hidden');
 
@@ -57,18 +59,21 @@
   };
 
   var activateMap = function () {
+    // module form start
     setInputAddress(getPinMainCoordinates(true));
     setAttributeCollection(fieldsFormAdCollection, false);
     setAttributeCollection(fieldsFormAdCollection, false);
+    // module form end
+
+    var currentData = window.data.generateMocks();
+    window.mapMarks.generatePins(currentData);
 
     window.utils.removeClassName(filtersAds, 'hidden');
     window.utils.removeClassName(map, 'map--faded');
     window.utils.removeClassName(formAd, 'ad-form--disabled');
 
-    var currentData = window.data.generateMocks();
-    window.mapMarks.generatePins(currentData);
-
-    document.removeEventListener('DOMContentLoaded', deactivateMap)
+    mainPin.removeEventListener('mousedown', onMainPinMousedown);
+    mainPin.removeEventListener('keydown', onMainPinKeydown);
   };
 
   var onMainPinMousedown = function (evt) {
