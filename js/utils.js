@@ -5,6 +5,9 @@
     addClassName: function (element, className) {
       element.classList.add(className);
     },
+    removeClassName: function (element, className) {
+      element.classList.remove(className);
+    },
     removeChilds: function (element) {
       element.innerHTML = '';
     },
